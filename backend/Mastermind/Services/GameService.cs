@@ -74,5 +74,24 @@ namespace Mastermind.Services
 
             return code;
         }
+
+        public GameResponseDto GetGame(string gameId)
+        {
+            var game = games.Find(game => game.Id.Equals(gameId));
+            if (game == null) return null;
+
+            return new GameResponseDto
+            {
+                Id = game.Id,
+                Name = game.Name,
+                Tries = game.Tries
+            };
+        }
+
+        public List<Guess> GetGuessHistory(string gameId)
+        {
+            var game = games.Find(game => game.Id.Equals(gameId));
+            return game?.GuessHistory;
+        }
     }
 }

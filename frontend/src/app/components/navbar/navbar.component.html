@@ -12,8 +12,8 @@
       </ul>
       <form class="d-flex">
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logModal">Show logs</button>
-        <input class="ms-2 me-2" type="search" placeholder="game id">
-        <button class="btn btn-outline-success" type="submit">Resume existing game</button>
+        <input #inputGameId class="ms-2 me-2" type="search" placeholder="game id">
+        <button class="btn btn-outline-success" type="submit" (click)="resumeGame(inputGameId.value)">Resume existing game</button>
       </form>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MastermindService} from "../../services/mastermind.service";
+import {DataProviderService} from "../../services/data-provider.service";
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import {MastermindService} from "../../services/mastermind.service";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private mastermindService: MastermindService) {
+  constructor(private mastermindService: MastermindService, private dataProvider: DataProviderService) {
   }
 
   ngOnInit(): void {
@@ -16,5 +17,12 @@ export class NavbarComponent implements OnInit {
 
   startNewGame(): void {
     this.mastermindService.gameState = 1;
+  }
+
+  async resumeGame(gameId: string): Promise<void> {
+    await this.dataProvider.resumeGame(gameId);
+    this.mastermindService.gameState = 2;
+    console.log(this.dataProvider.game);
+    console.log(this.dataProvider.guessHistory);
   }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using Mastermind.DTOs;
+﻿using Mastermind.DTOs;
 using Mastermind.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Mastermind.Controllers
 {
@@ -36,6 +36,24 @@ namespace Mastermind.Controllers
             var guessResult = gameService.SubmitGuess(gameId, guess);
             if (guessResult == null) return BadRequest("Game not found");
             return Ok(guessResult);
+        }
+
+        [HttpGet]
+        [Route("{gameId}")]
+        public IActionResult GetGame(string gameId)
+        {
+            var game = gameService.GetGame(gameId);
+            if (game == null) return BadRequest("Game not found");
+            return Ok(game);
+        }
+
+        [HttpGet]
+        [Route("guessHistory/{gameId}")]
+        public IActionResult GetGuessHistory(string gameId)
+        {
+            var guessHistory = gameService.GetGuessHistory(gameId);
+            if (guessHistory == null) return BadRequest("Game not found");
+            return Ok(guessHistory);
         }
     }
 }

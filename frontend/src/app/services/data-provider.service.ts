@@ -28,4 +28,9 @@ export class DataProviderService {
   submitGuess(guess: string[]): Observable<Guess> {
     return this.http.post<Guess>(`${this.rootUrl}/guess/${this.game.id}`, guess);
   }
+
+  async resumeGame(gameId: string): Promise<void> {
+    this.game = (await this.http.get<Game>(`${this.rootUrl}/${gameId}`).toPromise());
+    this.guessHistory = (await this.http.get<Guess[]>(`${this.rootUrl}/guessHistory/${gameId}`).toPromise());
+  }
 }
