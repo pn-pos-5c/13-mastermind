@@ -1,0 +1,3 @@
+<app-navbar></app-navbar>
+<app-start-game *ngIf="mastermindService.gameState === 1"></app-start-game>
+<app-gameboard *ngIf="mastermindService.gameState === 2"></app-gameboard>

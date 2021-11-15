@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+    Choose a color
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let color of dataProvider.colors">
+      <button class="dropdown-item" (click)="colorSelected(color)">{{color}}</button>
+    </li>
+  </ul>
+</div>

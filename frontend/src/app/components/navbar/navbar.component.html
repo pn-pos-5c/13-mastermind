@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Mastermind</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button class="btn start-0" (click)="startNewGame()">Start new game</button>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#logModal">Show logs</button>
+        <input class="ms-2 me-2" type="search" placeholder="game id">
+        <button class="btn btn-outline-success" type="submit">Resume existing game</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="modal" id="logModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Logs</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <app-logs></app-logs>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

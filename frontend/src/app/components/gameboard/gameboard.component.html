@@ -1,0 +1,42 @@
+<h2 class="p-2">Hi {{dataProvider.game.name}}! Your game ID is {{dataProvider.game.id}}</h2>
+
+<div *ngFor="let guess of dataProvider.guessHistory; let i = index" class="d-flex flex-row mb-3">
+  <span class="p-2">{{i + 1}}. Attempt ({{dataProvider.game.tries - (i + 1)}} left):</span>
+
+  <div class="d-flex flex-row mb-3">
+    <div class="color" [ngStyle]="{'background': guess.colors[0]}"></div>
+    <div class="color" [ngStyle]="{'background': guess.colors[1]}"></div>
+    <div class="color" [ngStyle]="{'background': guess.colors[2]}"></div>
+    <div class="color" [ngStyle]="{'background': guess.colors[3]}"></div>
+
+    <div>
+      <div>Correct color: {{guess.correctColor}}</div>
+      <div>Correct color and position: {{guess.correctSlot}}</div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showGuess" class="d-flex flex-row mb-3">
+  <span class="p-2">{{attempt}}. Attempt ({{dataProvider.game.tries - attempt}} left):</span>
+  <app-attempt *ngIf="colors[0] === ''" class="p-2" [availableColors]="dataProvider.colors"
+               (colorChosen)="colorChosen(0, $event)"></app-attempt>
+  <div class="color" *ngIf="colors[0] !== ''" [ngStyle]="{'background': colors[0]}"></div>
+
+  <app-attempt *ngIf="colors[1] === ''" class="p-2" [availableColors]="dataProvider.colors"
+               (colorChosen)="colorChosen(1, $event)"></app-attempt>
+  <div class="color" *ngIf="colors[1] !== ''" [ngStyle]="{'background': colors[1]}"></div>
+
+  <app-attempt *ngIf="colors[2] === ''" class="p-2" [availableColors]="dataProvider.colors"
+               (colorChosen)="colorChosen(2, $event)"></app-attempt>
+  <div class="color" *ngIf="colors[2] !== ''" [ngStyle]="{'background': colors[2]}"></div>
+
+  <app-attempt *ngIf="colors[3] === ''" class="p-2" [availableColors]="dataProvider.colors"
+               (colorChosen)="colorChosen(3, $event)"></app-attempt>
+  <div class="color" *ngIf="colors[3] !== ''" [ngStyle]="{'background': colors[3]}"></div>
+
+  <button id="btnSubmit" class="btn btn-primary" (click)="submitAttempt()" [disabled]="colors.includes('')">Submit
+    attempt
+  </button>
+</div>
+
+<h1 *ngIf="!showGuess">{{message}}</h1>

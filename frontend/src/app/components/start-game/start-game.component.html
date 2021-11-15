@@ -1,0 +1,28 @@
+<div [formGroup]="gameForm" class="container row">
+  <h2>Start a new game</h2>
+
+  <div class="col-4">
+    <div>Your name:</div>
+    <input class="col-12" type="text" formControlName="name">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+      <div *ngIf="name.errors?.required">
+        Name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="col-8">
+    <div>Maximum number of tries (6 - 12):</div>
+    <input class="col-6" type="number" formControlName="tries">
+    <div *ngIf="tries.invalid && (tries.dirty || tries.touched)" class="alert alert-danger">
+      <div *ngIf="tries.errors?.required">
+        Tries is required.
+      </div>
+      <div *ngIf="tries.errors?.min || tries.errors?.max">
+        Please enter a number between 6 and 12.
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-3"><button class="btn btn-primary" (click)="startNewGame()" [disabled]="!gameForm.valid">Start new game</button></div>
+</div>
